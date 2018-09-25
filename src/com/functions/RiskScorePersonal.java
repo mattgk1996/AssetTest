@@ -4,9 +4,29 @@ public class RiskScorePersonal {
 	private int risk_age;
 	private int risk_dependents;
 	private int risk_returns;
+	private double risk_personal;
+	 
+	public int getRisk_age() {
+		return risk_age;
+	}
+
+
+	public int getRisk_dependents() {
+		return risk_dependents;
+	}
+
+
+	public int getRisk_returns() {
+		return risk_returns;
+	}
+
 	
-	
-	public void calculatePersonalRiskScore1(int age, int fin_dependents, int returns ) {
+	public double getRisk_personal() {
+		return risk_personal;
+	}
+
+
+	public void calculatePersonalRiskScore(int age, int fin_dependents, int returns ) {
 	
 		if(age<20) risk_age =3;
 		else if(age <25) risk_age =4;
@@ -26,10 +46,15 @@ public class RiskScorePersonal {
 			}
 		}
 		
-		if(returns<11) risk_returns = 1;
-		else if
-		
-		
-			
+		if(returns>=2&& returns<=6) risk_returns = 10;
+		else if (returns<=9) risk_returns = 7;
+		else if (returns<11) risk_returns = 4;
+		else risk_returns = 1;
+
+			//Ask doubt to Harish
+		risk_personal = (double) (risk_age+ risk_dependents+risk_returns)/3;
 	}
+	
+	
+	
 }

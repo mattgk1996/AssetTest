@@ -4,10 +4,10 @@ package com.functions;
 import java.util.List;
 */
 
-public class RiskScoreCalculator {
+public class RiskScoreQuestions {
 
 	private double [] ques_score = new double[10];
-	private double risk_score;
+	private double risk_questions;
 	
 	
 	
@@ -16,12 +16,12 @@ public class RiskScoreCalculator {
 	}
 
 
-	public double getRisk_score() {
-		return risk_score;
+	public double getRisk_questions() {
+		return risk_questions;
 	}
 
 
-	public void calculateRiskScore (int [] points, int [] weights) {
+	public void calculateRiskQuestions (int [] points, int [] weights) {
 		
 		double w_sum = 0;
 		
@@ -29,9 +29,11 @@ public class RiskScoreCalculator {
 			ques_score[i]= points[i]*weights[i];
 			w_sum = w_sum+ques_score[i];
 		}
-		risk_score = w_sum/10;
+		risk_questions = w_sum/10;
 		
 	}
+	
+	
 	
 	
 }
