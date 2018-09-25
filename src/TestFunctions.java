@@ -8,7 +8,7 @@ public class TestFunctions {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Normalizer a= new Normalizer();
+//		Normalizer a= new Normalizer();
 		
 		RiskScoreQuestions r = new RiskScoreQuestions();
 		RiskScorePortfolio risk = new RiskScorePortfolio();
@@ -24,12 +24,12 @@ public class TestFunctions {
 			weights[i]=1;
 		}
 		
-		r.calculateRiskQuestions(points, weights);			
+		r.calculateRiskQuestions(points, weights );			
 		
-		risk.portfolioPercentCalc(50, 20, 20, 10);
-		risk.calculatePortfolioRiskScore(1);
+		risk.calculatePortfolioRiskScore(25, 20, 20, 100, 10);
 		
-		risk2.calculatePersonalRiskScore(25, 3,12);
+		
+		risk2.calculatePersonalRiskScore(25, 3,8);
 		
 		System.out.println("Risk Score Portfolio is "+risk.getRisk_portfolio());
 		System.out.println("Risk Score Questions is "+ r.getRisk_questions());
