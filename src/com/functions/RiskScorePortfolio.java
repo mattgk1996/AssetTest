@@ -17,7 +17,7 @@ public class RiskScorePortfolio {
 	public void portfolioPercentCalc(double tbills, double bonds, double equity, double gold) {
 		
 		double total = tbills+bonds+equity+gold;
-		non_risky_percent = ( tbills/total)*100;				
+		non_risky_percent = ( tbills /total)*100;				
 	}
 	
 	public void calculatePortfolioRiskScore(int country_code) {
