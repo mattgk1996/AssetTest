@@ -43,5 +43,7 @@ public class TestFunctions {
 		System.out.println("Final Risk is "+ final_risk);
 		System.out.println("Risk Aversion is "+ normalize.getRisk_aversion());
 	}
+	
+	
 
 }
