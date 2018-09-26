@@ -11,7 +11,7 @@ public class LoadData {
 		
 		ExtractData e = new ExtractData();
 		CalculateReturnsAndVolatility c = new CalculateReturnsAndVolatility();
-		
+		 
 	
     try {
         double[] equityReturnsArray = e.getDataArray("DowJonesEquity.csv");

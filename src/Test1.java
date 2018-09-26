@@ -34,16 +34,20 @@ public class Test1 {
 		int [] points = new int[10];
 		int [] weights = new int[10];
 		
-		for(int i=0;i<10;i++) {
-			points[i]=i;
+		for(int i=0;i<7;i++) {
+			if(i==0)points[i]=i;
+			else if(i==1) points[i]=i;
+			else if(i==2) points[i]=i;
+			else if(i==3) points[i]=i;
+			else if(i==4) points[i]=i;
+			else if(i==5) points[i]=i;
+			else if(i==6) points[i]=i;
+			
 			weights[i]=1;
 		}
 		
-		r.calculateRiskQuestions(points, weights );			
-		
-		risk.calculatePortfolioRiskScore(50, 15, 20, 10, 5);
-		
-		
+		r.calculateRiskQuestions(points, weights );					
+		risk.calculatePortfolioRiskScore(50, 15, 20, 10, 5);	
 		risk2.calculatePersonalRiskScore(50, 2);
 		
 		System.out.println("Risk Score Portfolio is "+risk.getRisk_portfolio());
