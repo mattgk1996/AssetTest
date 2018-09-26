@@ -3,10 +3,13 @@
 import org.apache.commons.math.stat.correlation.Covariance;
 import org.apache.commons.math.stat.descriptive.moment.StandardDeviation;
 
+import com.functions.AllocateAssets;
 import com.functions.Normalizer;
 import com.functions.RiskScorePersonal;
 import com.functions.RiskScorePortfolio;
 import com.functions.RiskScoreQuestions;
+import com.functions.SurplusCalculator;
+import com.pojo.PortfolioPoint;
 
 import java.io.*;
 import java.text.DecimalFormat;
@@ -19,12 +22,13 @@ public class Test1 {
         Test1 t = new Test1();
         double[] equityReturnsArray = t.getDataArray("DowJonesEquity.csv");
         double[] bondReturnsArray = t.getDataArray("USBonds.csv");
-        double[] goldReturnsArray = t.getDataArray("USGold.csv");
+        //double[] goldReturnsArray = t.getDataArray("USGold.csv");
         double equityValues[] = t.calculateUSReturnAndVolatility("week", equityReturnsArray);
         double bondValues[] = t.calculateUSReturnAndVolatility("week", bondReturnsArray);
-        double goldValues[] = t.calculateUSReturnAndVolatility("week", goldReturnsArray);
+       // double goldValues[] = t.calculateUSReturnAndVolatility("week", goldReturnsArray);
+       // System.out.println(goldValues[0]+" "+goldValues[1]);
         DecimalFormat df = new DecimalFormat("#.00");
-        DataPoint1 opt = t.generateFrontier(equityValues[0], equityValues[1], bondValues[0], bondValues[1], goldValues[0], goldValues[1], t.getCovariance(equityReturnsArray, bondReturnsArray), t.getCovariance(equityReturnsArray, goldReturnsArray), t.getCovariance(bondReturnsArray, goldReturnsArray), 2.0 );
+        DataPoint1 opt = t.generateFrontier(8, equityValues[1], bondValues[0], bondValues[1], 16, 40, t.getCovariance(equityReturnsArray, bondReturnsArray), -0.353, -0.34, 2.0 );
         RiskScoreQuestions r = new RiskScoreQuestions();
 		RiskScorePortfolio risk = new RiskScorePortfolio();
 		RiskScorePersonal risk2 = new RiskScorePersonal();
@@ -35,20 +39,21 @@ public class Test1 {
 		int [] weights = new int[10];
 		
 		for(int i=0;i<7;i++) {
-			if(i==0)points[i]=i;
-			else if(i==1) points[i]=i;
-			else if(i==2) points[i]=i;
-			else if(i==3) points[i]=i;
-			else if(i==4) points[i]=i;
-			else if(i==5) points[i]=i;
-			else if(i==6) points[i]=i;
+			if(i==0)points[i]=10;
+			else if(i==1) points[i]=3;
+			else if(i==2) points[i]=2;
+			else if(i==3) points[i]=7;
+			else if(i==4) points[i]=1;
+			else if(i==5) points[i]=5;
+			else if(i==6) points[i]=5 ;
 			
 			weights[i]=1;
 		}
 		
-		r.calculateRiskQuestions(points, weights );					
-		risk.calculatePortfolioRiskScore(50, 15, 20, 10, 5);	
-		risk2.calculatePersonalRiskScore(50, 2);
+		r.calculateRiskQuestions(points, weights );				
+		
+		risk.calculatePortfolioRiskScore(20, 8000, 7200, 50000 , 3000);	
+		risk2.calculatePersonalRiskScore(20, 1);
 		
 		System.out.println("Risk Score Portfolio is "+risk.getRisk_portfolio());
 		System.out.println("Risk Score Questions is "+ r.getRisk_questions());
@@ -69,7 +74,45 @@ public class Test1 {
         System.out.println("invest in risk free t-bills: "+df.format(riskFreeAssetWeight*100)+"%");
         System.out.println("invest in bonds: "+df.format(riskyAssetWeight*opt.getBondWeight()*100)+"%");
         System.out.println("invest in equity: "+df.format(riskyAssetWeight*opt.getEquityWeight()*100)+"%");
-        System.out.println("invest in gold: "+df.format(riskyAssetWeight*opt.getGoldWeight()*100)+"%");
+        System.out.println("invest in commodity: "+df.format(riskyAssetWeight*opt.getGoldWeight()*100)+"%");
+    
+    
+       PortfolioPoint opt1 = new  PortfolioPoint(opt.getEquityWeight(), opt.getBondWeight(), opt.getGoldWeight(), opt.getPortfolioExpectedReturn(), opt.getPortfolioVolatility(), opt.getSharpeRatio());
+       System.out.println(opt1.getBondWeight());
+       
+       int years = 7;
+        double [] values = new double [4];
+    
+        double total = 0;
+        
+        for(int i=0;i<years;i++) {
+        	 
+        	values = AllocateAssets.cashFlow(SurplusCalculator.surplusWithTime(i, 50000, 45000), opt1, 68000, riskyAssetWeight );
+        	System.out.println(SurplusCalculator.surplusWithTime(i, 50000, 45000)+"\n");
+        	for(int j=0;j<4;j++) {
+        		
+        		if(j==0)System.out.println("Bonds Now is: "+values[0]);
+        		else if(j==1)System.out.println("Equities now is "+values[1]);
+        		else if(j==2)System.out.println("Comodities now is "+values[2]);
+        		else if(j==3)System.out.println("TBills now is "+values[3]);
+        		
+        		
+        	}
+        	
+        	
+        	
+        }
+    
+        for(double js:values) {
+    		total = total+js;
+    	}
+    	
+    	System.out.println(" \nTotal Now is "+total);
+        
+       // System.out.println("Total Money at the end is "+total);
+        	
+
+    
     }
 
     public double[] calculateUSReturnAndVolatility(String bucketSize, double[] returns)throws IOException
@@ -161,5 +204,11 @@ public class Test1 {
         double riskyAssetWeight = (point.getSharpeRatio())/((point.getPortfolioVolatility()/100)*riskAversionCoefficient);
         return riskyAssetWeight;
     }
+    
+
+
+
+
 }
+
 
