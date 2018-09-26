@@ -24,7 +24,10 @@ public class RiskScorePortfolio {
 		
 		val=val/10;
 		double scaler = val;
+		
 		System.out.println("Scaler Done" + scaler);
+		
+		risk_portfolio = 1;
 		for(int i=3;i<13;i++) {
 			scaler=i*val;
 			if(risky_percent<scaler) {
@@ -34,8 +37,12 @@ public class RiskScorePortfolio {
 			}
 			
 		}
-		System.out.println("Out of for");
+//		System.out.println("Out of for");
+		
+		if(risk_portfolio!=1)
 		risk_portfolio=risk_portfolio-2;
+		else
+		risk_portfolio = 10;	
 		
 		
 		

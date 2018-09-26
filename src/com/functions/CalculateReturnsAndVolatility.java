@@ -8,6 +8,10 @@ public class CalculateReturnsAndVolatility {
 	
 	private double[] returnAndVolatility;
 	
+	public double[] getReturnAndVolatility() {
+		return returnAndVolatility;
+	}
+	
 	public CalculateReturnsAndVolatility() {
 		// TODO Auto-generated constructor stub
 		returnAndVolatility = new double[2];

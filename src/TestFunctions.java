@@ -26,10 +26,8 @@ public class TestFunctions {
 		
 		r.calculateRiskQuestions(points, weights );			
 		
-		risk.calculatePortfolioRiskScore(25, 20, 20, 100, 10);
-		
-		
-		risk2.calculatePersonalRiskScore(25, 3,8);
+		risk.calculatePortfolioRiskScore(50, 20, 20, 10, 10);		
+		risk2.calculatePersonalRiskScore(50, 3);
 		
 		System.out.println("Risk Score Portfolio is "+risk.getRisk_portfolio());
 		System.out.println("Risk Score Questions is "+ r.getRisk_questions());
