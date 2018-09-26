@@ -11,11 +11,11 @@ import com.functions.RiskScoreQuestions;
 import java.io.*;
 import java.text.DecimalFormat;
 import java.util.*;
-/**
- * Created by jenilshah on 13/09/2018.
- */
+
 public class Test1 {
+	
     public static void main(String[] args)throws IOException {
+    	  
         Test1 t = new Test1();
         double[] equityReturnsArray = t.getDataArray("DowJonesEquity.csv");
         double[] bondReturnsArray = t.getDataArray("USBonds.csv");
@@ -41,10 +41,10 @@ public class Test1 {
 		
 		r.calculateRiskQuestions(points, weights );			
 		
-		risk.calculatePortfolioRiskScore(25, 20, 20, 100, 10);
+		risk.calculatePortfolioRiskScore(50, 15, 20, 10, 5);
 		
 		
-		risk2.calculatePersonalRiskScore(25, 3,8);
+		risk2.calculatePersonalRiskScore(50, 2);
 		
 		System.out.println("Risk Score Portfolio is "+risk.getRisk_portfolio());
 		System.out.println("Risk Score Questions is "+ r.getRisk_questions());
@@ -58,6 +58,8 @@ public class Test1 {
 		System.out.println("Final Risk is "+ final_risk);
 		System.out.println("Risk Aversion is "+ normalize.getRisk_aversion());
         
+		
+		
         double riskyAssetWeight = t.calculateRiskyAssetWeight(opt, normalize.getRisk_aversion());
         double riskFreeAssetWeight = 1- riskyAssetWeight;
         System.out.println("invest in risk free t-bills: "+df.format(riskFreeAssetWeight*100)+"%");
@@ -156,3 +158,4 @@ public class Test1 {
         return riskyAssetWeight;
     }
 }
+

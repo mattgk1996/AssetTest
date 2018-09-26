@@ -25,11 +25,11 @@ public class RiskScoreQuestions {
 		
 		double w_sum = 0;
 		
-		for(int i=0;i<10;i++) {
+		for(int i=0;i<7;i++) {
 			ques_score[i]= points[i]*weights[i];
 			w_sum = w_sum+ques_score[i];
 		}
-		risk_questions = w_sum/10;
+		risk_questions = w_sum/7;
 		
 	}
 	
