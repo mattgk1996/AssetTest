@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 
 import com.functions.AllocateAssets;
+import com.functions.CashFlow;
 import com.functions.GoalsMap;
 import com.functions.OptimumPoint;
 import com.functions.RiskCalc;
@@ -49,12 +50,24 @@ public class FinalTest {
         System.out.println("invest in equity: "+df.format(riskyAssetWeight*opt.getEquityWeight()*100)+"%");
         System.out.println("invest in commodity: "+df.format(riskyAssetWeight*opt.getGoldWeight()*100)+"%");
         
-        
+		CashFlow [] flow = new CashFlow[15];
+		
         GoalsMap g = new GoalsMap();
         int []years = {3,6,8,10};
-        int[] goals = {5000,7000,10000,5000};
+        int[] goals = {50000,7000,100000,5000};
+        boolean [] check = g.GoalCheck(years, goals, riskyAssetWeight, opt, 68000,50000,45000,flow);
         
-        boolean [] check = g.GoalCheck(years, goals, riskyAssetWeight, opt);
+        
+		int loop = 0;
+		while(loop<years[3]) {
+		flow[loop].PrintCashFlow();
+		loop++;
+		}
+        
+        for(int i = 0;i<4;i++) {
+        System.out.println(check[i]);
+        }
+        
 /*        
         int years = 7;
         
