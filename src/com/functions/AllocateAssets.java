@@ -25,8 +25,8 @@ public class AllocateAssets {
 			
 		}
  
-
-		System.out.println("Total Holdings now is:"+ holdings_total);
+/*
+		System.out.println("Total Holdings now is:"+ holdings_total);*/
 		
 		for(int i=0;i<4;i++) {
 			if(i == 0)allocations[i] = holdings_total*currentP.getBondWeight()*riskyAssetWeight;

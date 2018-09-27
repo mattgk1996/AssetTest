@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 
 import com.functions.AllocateAssets;
+import com.functions.GoalsMap;
 import com.functions.OptimumPoint;
 import com.functions.RiskCalc;
 import com.functions.SurplusCalculator;
@@ -49,7 +50,15 @@ public class FinalTest {
         System.out.println("invest in commodity: "+df.format(riskyAssetWeight*opt.getGoldWeight()*100)+"%");
         
         
+        GoalsMap g = new GoalsMap();
+        int []years = {3,6,8,10};
+        int[] goals = {5000,7000,10000,5000};
+        
+        boolean [] check = g.GoalCheck(years, goals, riskyAssetWeight, opt);
+/*        
         int years = 7;
+        
+        
         double [] assets = new double [4];
     
         double total = 0;
@@ -80,7 +89,7 @@ public class FinalTest {
     	
     	System.out.println(" \nTotal Now is "+total);
         
-        
+*/        
 
 	}
 
