@@ -8,7 +8,7 @@ public class AllocateAssets {
 
 		
 		double[] allocations = new double[4]; 
-		double[] randomReturn = FutureReturns.getFutureReturns(8, 12, 2.5, 3.5, 18, 40);
+		double[] randomReturn = FutureReturns.getFutureReturns(8, 12, 2.5, 3.5, 18, 40); 
 		
 		/*PortfolioPointImpl impl = new PortfolioPointImpl();
 		

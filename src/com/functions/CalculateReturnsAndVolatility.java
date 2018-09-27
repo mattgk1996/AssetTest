@@ -6,19 +6,13 @@ import org.apache.commons.math.stat.descriptive.moment.StandardDeviation;
 
 public class CalculateReturnsAndVolatility {
 	
-	private double[] returnAndVolatility;
-	
-	public double[] getReturnAndVolatility() {
-		return returnAndVolatility;
-	}
-	
 	public CalculateReturnsAndVolatility() {
 		// TODO Auto-generated constructor stub
-		returnAndVolatility = new double[2];
 	}
 	
 	public double[] calculateReturnAndVolatility(String bucketSize, double[] returns)throws IOException
     {
+		double[] returnAndVolatility = new double[2];
         int annualizationFactor = 1;
         if(bucketSize.equalsIgnoreCase("week"))
         {

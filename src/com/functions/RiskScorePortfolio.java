@@ -25,7 +25,7 @@ public class RiskScorePortfolio {
 		val=val/10;
 		double scaler = val;
 		
-		System.out.println("Scaler Done" + scaler);
+//		System.out.println("Scaler Done" + scaler);
 		
 		risk_portfolio = 1;
 		for(int i=3;i<13;i++) {
