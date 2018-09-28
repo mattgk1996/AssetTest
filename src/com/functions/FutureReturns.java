@@ -11,6 +11,7 @@ public class FutureReturns {
 			returns[1] = equityExpectedReturn + Math.random()*equitySTD;
 			returns[0] = bondExpectedReturn + Math.random()*bondSTD;
 			returns[2] = commodityExpectedReturn - Math.random()*commoditySTD;
+//			System.out.println("bonds: "+returns[0]+"\tequity: "+returns[1]+"\tcommodities: "+returns[2]);
 		
 		}
 		else
@@ -18,8 +19,9 @@ public class FutureReturns {
 			returns[1] = equityExpectedReturn - Math.random()*equitySTD;
 			returns[0] = bondExpectedReturn - Math.random()*bondSTD;
 			returns[2] = commodityExpectedReturn + Math.random()*commoditySTD;
+//			System.out.println("bonds: "+returns[0]+"\tequity: "+returns[1]+"\tcommodities: "+returns[2]);
 		}
-		returns[3] = 2;
+		returns[3] = 3.2;
 		return returns;
 	}
    

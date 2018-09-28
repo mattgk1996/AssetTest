@@ -25,13 +25,63 @@ public class CashFlow {
 	
 	
 	
+	
+	
+	public double getBond() {
+		return bond;
+	}
+
+
+
+
+
+
+	public double getEquity() {
+		return equity;
+	}
+
+
+
+
+
+
+	public double getCommodity() {
+		return commodity;
+	}
+
+
+
+
+
+
+	public double getTbills() {
+		return tbills;
+	}
+
+
+
+
+
+
+	public int getYear() {
+		return year;
+	}
+
+
+
+
+
+
+	public double getPortfolio_total() {
+		return portfolio_total;
+	}
+
+
+
+
+
+
 	public void PrintCashFlow() {
-/*		PrintWriter writer = response.getWriter();
-		writer.println("Bonds: "+ bond);
-		writer.println("Equity: "+equity);
-		writer.println("Commodity: "+commodity);
-		writer.println("Deposits: "+ tbills);
-*/	
 		
 	
 		

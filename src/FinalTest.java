@@ -1,5 +1,7 @@
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.functions.AllocateAssets;
 import com.functions.CashFlow;
@@ -7,6 +9,7 @@ import com.functions.GoalsMap;
 import com.functions.OptimumPoint;
 import com.functions.RiskCalc;
 import com.functions.SurplusCalculator;
+import com.functions.TotalReturns;
 import com.impl.PortfolioPointImpl;
 import com.pojo.PortfolioPoint;
 
@@ -39,7 +42,7 @@ public class FinalTest {
         
         
         opt = OptimumPoint.findPoint();
-        double risk_aversion = calc.calculateRisk(20, 1, 8000, 7200, 50000, 3000, points, weights);
+        double risk_aversion = calc.calculateRisk(20, 1, 0, 00, 0000, 000, points, weights);
 		
 		
         double riskyAssetWeight = impl.calculateRiskyAssetWeight(opt, risk_aversion);
@@ -51,59 +54,39 @@ public class FinalTest {
         System.out.println("invest in commodity: "+df.format(riskyAssetWeight*opt.getGoldWeight()*100)+"%");
         
 		CashFlow [] flow = new CashFlow[15];
-		
+		boolean [] check = {false,false,false,false};
         GoalsMap g = new GoalsMap();
-        int []years = {3,6,8,10};
-        int[] goals = {50000,7000,100000,5000};
-        boolean [] check = g.GoalCheck(years, goals, riskyAssetWeight, opt, 68000,50000,45000,flow);
+        int []years = {3,5,8,10};
+        double[] goals = {50000,20000,10000,5000};
+        check = g.GoalCheck(years, goals, riskyAssetWeight, opt, 00000,10000,3000,flow);
         
+     
+        double [][] assetClassReturn =g.getAssetReturn();
         
-		int loop = 0;
-		while(loop<years[3]) {
-		flow[loop].PrintCashFlow();
-		loop++;
-		}
-        
-        for(int i = 0;i<4;i++) {
-        System.out.println(check[i]);
+        for(int iter = 0;iter <10;iter++) {
+        System.out.println("Asset Returns For Year "+ (iter+1));
+        double [] a = assetClassReturn[iter];
+        for(double b:a) {
+        	System.out.println(b);
+        }
         }
         
-/*        
-        int years = 7;
-        
-        
-        double [] assets = new double [4];
-    
-        double total = 0;
-        
-        
-        
-        for(int i=0;i<years;i++) {
-        	 
-        	assets = AllocateAssets.cashFlow(SurplusCalculator.surplusWithTime(i, 50000, 45000), opt, 68000, riskyAssetWeight );
-        	System.out.println(SurplusCalculator.surplusWithTime(i, 50000, 45000)+"\n");
-        	
-        	
-        	for(int j=0;j<4;j++) {
-        		
-        		if(j==0)System.out.println("Bonds Now is: "+assets[0]);
-        		else if(j==1)System.out.println("Equities now is "+assets[1]);
-        		else if(j==2)System.out.println("Comodities now is "+assets[2]);
-        		else if(j==3)System.out.println("TBills now is "+assets[3]);      		
-        	}
-        	
-        	
-        	
+//		int loop = 0;
+//		while(loop<years[3]) {
+//		flow[loop].PrintCashFlow();
+//		loop++;
+//		}
+//        
+//        for(int i = 0;i<4;i++) {
+//        System.out.println(check[i]);
+//        
+//        }
+//       
+        //Put Income, Expense
+        for(int i =1;i<10;i++) {
+        System.out.println("Total Returns for year "+i+" "+TotalReturns.getTotalReturns(flow, i,goals,years,check,10000,3000));
         }
-    
-        for(double js:assets) {
-    		total = total+js;
-    	}
-    	
-    	System.out.println(" \nTotal Now is "+total);
         
-*/        
-
 	}
 
 }

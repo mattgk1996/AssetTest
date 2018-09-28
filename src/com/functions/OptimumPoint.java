@@ -26,7 +26,12 @@ public class OptimumPoint {
       equityValues = calc.calculateReturnAndVolatility("week", equityReturnsArray);
       bondValues = calc.calculateReturnAndVolatility("week", bondReturnsArray);
       
+      //HardCode values for returns
       opt = impl.generateFrontier(8, equityValues[1], bondValues[0], bondValues[1], commValues[0], commValues[1], -0.16147883741320435, -0.353, -0.34, 2.0);     
+
+
+ //     opt = impl.generateFrontier(8, 12, 3.7,3.5, 15,30, -0.16147883741320435, -0.353, -0.34, 2.0);     
+
       return opt;
 	
 	}

@@ -1,21 +1,40 @@
 package com.functions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.pojo.PortfolioPoint;
+
+
 
 public class AllocateAssets {
 
-	public static double[] cashFlow(double surplus, PortfolioPoint currentP, double holdings_total, double riskyAssetWeight) {
+	private static double riskyWeight;
+	private double [] randomReturn = new double [4];
+	
+	
+	
+	
 
-		
+
+	public double[] getRandomReturn() {
+		return randomReturn;
+	}
+
+	public double[] cashFlow(double surplus, PortfolioPoint currentP, double holdings_total, double riskyAssetWeight) {
+
+		riskyWeight = riskyAssetWeight;
 		double[] allocations = new double[4]; 
-		double[] randomReturn = FutureReturns.getFutureReturns(8, 12, 2.5, 3.5, 18, 40); 
+
+		randomReturn = FutureReturns.getFutureReturns(8, 12, 3.7, 3.5, 15, 30);
 		
-		/*PortfolioPointImpl impl = new PortfolioPointImpl();
-		
-		double r=impl.calculateRiskyAssetWeight(currentP, 17.45874012);*/
-		
+		//Add Surplus
 		holdings_total= holdings_total+surplus;		
 
+		
+		//System.out.println("Bond %" + currentP.getBondWeight()*riskyAssetWeight);
+		
+		//Calculate Return
 		for(int i=0;i<4;i++) {
 			
 			if(i == 0)holdings_total = holdings_total*(1+0.01*randomReturn[i]*currentP.getBondWeight()*riskyAssetWeight);
@@ -23,11 +42,13 @@ public class AllocateAssets {
 			else if(i==2)holdings_total = holdings_total*(1+0.01*randomReturn[i]*currentP.getGoldWeight()*riskyAssetWeight);
 			else if(i==3)holdings_total = holdings_total*(1+0.01*randomReturn[i]*(1-riskyAssetWeight));
 			
+			
 		}
  
 /*
 		System.out.println("Total Holdings now is:"+ holdings_total);*/
 		
+		//Split Up Assets
 		for(int i=0;i<4;i++) {
 			if(i == 0)allocations[i] = holdings_total*currentP.getBondWeight()*riskyAssetWeight;
 			else if(i==1)allocations[i] = holdings_total*currentP.getEquityWeight()*riskyAssetWeight;
@@ -37,6 +58,22 @@ public class AllocateAssets {
 		}
 		
 		
+		return allocations;
+	}
+	
+	public static double[] splitUP(double holdings_total,PortfolioPoint currentP) {
+		
+		
+		double[] allocations = new double[4]; 
+		
+		for(int i=0;i<4;i++) {
+			if(i == 0)allocations[i] = holdings_total*currentP.getBondWeight()*riskyWeight;
+			else if(i==1)allocations[i] = holdings_total*currentP.getEquityWeight()*riskyWeight;
+			else if(i==2)allocations[i] = holdings_total*currentP.getGoldWeight()*riskyWeight;
+			else if(i==3)allocations[i] = holdings_total*(1-riskyWeight);
+			
+		}
+
 		return allocations;
 	}
 
